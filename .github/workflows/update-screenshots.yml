@@ -26,6 +26,7 @@ jobs:
           LOST_PIXEL_MODE: update
       - name: Permissions
         run: sudo chown -R $USER:$USER .
+        if: ${{ failure() && steps.lp.conclusion == 'failure' }}
         
       - name: Create Pull Request
         id: cpr
