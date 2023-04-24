@@ -25,7 +25,7 @@ jobs:
         env:
           LOST_PIXEL_MODE: update
       - name: Permissions
-        run: sudo chown -R $USER:$USER
+        run: sudo chown -R $USER:$USER .
         
       - name: Create Pull Request
         id: cpr
