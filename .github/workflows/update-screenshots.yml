@@ -24,6 +24,9 @@ jobs:
         uses: lost-pixel/lost-pixel@v3.3.0
         env:
           LOST_PIXEL_MODE: update
+      - name: Permissions
+        run: sudo chown -R $USER:$USER
+        
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v5
