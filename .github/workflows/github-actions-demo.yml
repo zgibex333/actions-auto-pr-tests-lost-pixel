@@ -27,5 +27,5 @@ jobs:
       - name: Build ladle
         run: npm run build-storybook
 
-      - name: Test screenshots
-        run: npm run lost-pixel
+      - name: Lost Pixel
+        uses: lost-pixel/lost-pixel@v3.0.3
