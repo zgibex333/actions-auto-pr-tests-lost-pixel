@@ -25,6 +25,7 @@ jobs:
         env:
           LOST_PIXEL_MODE: update
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v5
         if: ${{ failure() && steps.lp.conclusion == 'failure' }}
         with:
