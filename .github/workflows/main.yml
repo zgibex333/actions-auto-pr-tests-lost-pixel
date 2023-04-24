@@ -1,17 +1,31 @@
-on: workflow_dispatch
-
+name: Update project
+run-name: ${{ github.actor }} is testing out GitHub Actions and Screenshot tests 🚀
+on: [push]
 jobs:
-  createPullRequest:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Make changes to pull request
-        run: touch emtyFile.txt
-
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v5
+  integration:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [ 18.x ]
+    # The runners that the job will run on
+    runs-on: ${{ matrix.os }}
+    steps: 
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-  
+          node-version: ${{ matrix.node }}
+
+      - name: Checkout master branch
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build ladle
+        run: npm run build
+
+      - name: Build ladle
+        run: npm run build-storybook
+
+      - name: Lost Pixel
+        uses: lost-pixel/lost-pixel@v3.0.3
