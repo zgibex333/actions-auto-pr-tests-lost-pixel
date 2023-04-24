@@ -16,9 +16,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build ladle
-        run: npm run build
-
       - name: Build storybook
         run: npm run build-storybook
 
@@ -32,8 +29,3 @@ jobs:
         if: ${{ failure() && steps.lp.conclusion == 'failure' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          # commit-message: update lost-pixel baselines
-          # delete-branch: true
-          # branch: 'lost-pixel-update/${{ github.ref_name }}'
-          # title: 'Lost Pixel update - ${{ github.ref_name }}'
-          # body: Automated baseline update PR created by Lost Pixel
